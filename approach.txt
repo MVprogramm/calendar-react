@@ -1,0 +1,75 @@
+1. map:
+
+index(
+    App(
+        Header()
+        Calendar(
+            Navigation()
+            Sidebar()
+            Week(
+                Day(
+                    Hour(
+                        Event()
+                    )
+                )
+            )
+            ClockHand()
+        )
+    )
+)
+
+2. state:
+
+    1. weekStartDate(App, weekStartDate => weekDates)
+    2. events(Calendar)
+
+3. data flow:
+
+    1. arr.weekDates(App -> [Calendar -> Week => Day => Hours, Header -> Navigation])
+    2. arr.events(Calendar -> Week => Day => Hours)
+
+4. actions:
+
+    1. change output point from "body" to "#root"
+    2. styling the "Create" button:
+        2.1. change the "create-event-btn" style in header.scss
+        2.2. add svg-icon as HTML to button render
+        2.3. add variables.scss
+        2.4. import variables into header styles
+        2.5. remove "border-radius" property from button style in common.scss
+        2.6. add "display:flex" and "align-item:center" for "create-event-btn" style in header.scss
+    3. styling the "Today" button
+        3.1. add properties to "navigation__today-btn" style in header.scss
+    4. change "App" from class component to functional component
+    5. add favicon in index.html and its updating in "App" component
+    6. add style to today's date
+        6.1. add circle element to all date numbers in navigation.jsx
+        6.2. add in calendar.scss classes to style of date name, number and circle today's date
+        6.3. import "classNames" function from library 'classnames' in navigation.jsx
+        6.4. use "classNames" to style of today's date depending on the "isToday" variable
+        6.5. set value of "isToday" by comparing dates from "weekDates" array and today's date
+    7. add hover styles to navigation arrows
+        7.1. add circle element to both navigation arrows in Header.jsx
+        7.2. add to common.scss classes to style of circle at navigation arrows
+        7.3. set the absolute positions of the circles relative to the parent class
+        7.4. add opacity style on hover on parent classes
+    8. changing the "weekStartDate" state with click on the arrows
+        8.1. make the "getTimeInterval" function in dateUtils.js that returns days in ms
+        8.1. make in App component the constant "weekTime" by "getTimeInterval" with value of 7 days
+        8.2. create a new state with the "prevWeek" function in "App" that subtracts the "weekTime" from today
+        8.3. create a new state with the "comingWeek" function in "App" which adds the "weekTime" to today
+        8.4. create a new state today with the "currentWeek" function in "App"
+        8.5. give "prevWeek", "comingWeek" and "currentWeek" props to "Header" component
+        8.6. get props in "Header" by destructuring
+        8.7. add onClick() attribute to left arrow with "prevWeek" function in "Header"
+        8.8. add onClick() attribute to right arrow with "comingWeek" function in "Header"
+        8.9. add onClick() attribute to today button with "currentWeek" function in "Header"
+    9. rendering month and year to the right of arrows
+        9.1. add the "getDisplayedMonth" function in dateUtils.js that returns string with displayed month and year
+        9.2. give "weekStartDate" props to "Header" component in App.jsx
+        9.3. get prop "weekStartDate" in "Header" by destructuring
+        9.4. import "getDisplayedMonth" function from dateUtils.js in Header.jsx
+        9.5. display month and year using "getDisplayedMonth" with "weekStartDate" argument to the right of the arrows
+    10. add the "ClockHand" to calendar
+        10.1. add a component "ClockHand" to Calendar.jsx
+        10.1. create ClockHand.jsx
