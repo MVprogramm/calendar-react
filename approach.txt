@@ -78,6 +78,8 @@ index(
         10.5. 
     11. add GMT offset into calendar header in Navigation.jsx
         11.1. add '<div className="calendar__gmt"></div>' before calendar day labels in Header.jsx
+        11.2. add to calendar.scss class "calendar__gmt"
+        11.3. add time offset into div as return of "new Date().getTimezoneOffset()" function
     12. add the "ClockHand" to calendar
         12.1. add a component "ClockHand" to Calendar.jsx
         12.1. create ClockHand.jsx
