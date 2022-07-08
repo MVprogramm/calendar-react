@@ -5,6 +5,8 @@ import { days } from "../../utils/dateUtils.js";
 
 const Navigation = ({ weekDates }) => {
   let isToday = false;
+  let gmt = new Date().getTimezoneOffset() / 60;
+  let offset = gmt > 0 ? "-" : "+";
   const dayToday = new Date(
     new Date().getFullYear(),
     new Date().getMonth(),
@@ -12,6 +14,7 @@ const Navigation = ({ weekDates }) => {
   ).getTime();
   return (
     <header className="calendar__header">
+      <div className="calendar__gmt">{`GMT ${offset}${Math.abs(gmt)}`}</div>
       {weekDates.map((dayDate) => {
         dayToday === dayDate.getTime() ? (isToday = true) : (isToday = false);
         return (
@@ -35,6 +38,7 @@ const Navigation = ({ weekDates }) => {
                 "day-label__day-circle_today": isToday === true,
               })}
             ></div>
+            <div className="day-label__day-cell"></div>
           </div>
         );
       })}

@@ -70,6 +70,14 @@ index(
         9.3. get prop "weekStartDate" in "Header" by destructuring
         9.4. import "getDisplayedMonth" function from dateUtils.js in Header.jsx
         9.5. display month and year using "getDisplayedMonth" with "weekStartDate" argument to the right of the arrows
-    10. add the "ClockHand" to calendar
-        10.1. add a component "ClockHand" to Calendar.jsx
-        10.1. create ClockHand.jsx
+    10. add styles to the calendar layout
+        10.1. add border-bottom style and margin-bottom:10px to header in header.scss
+        10.2. add cell element to all date in navigation.jsx
+        10.3. add overflow:hidden and padding:8px into body
+        10.4. hide the scrollbar in "calendar__body", the file calendar.scss
+        10.5. 
+    11. add GMT offset into calendar header in Navigation.jsx
+        11.1. add '<div className="calendar__gmt"></div>' before calendar day labels in Header.jsx
+    12. add the "ClockHand" to calendar
+        12.1. add a component "ClockHand" to Calendar.jsx
+        12.1. create ClockHand.jsx
