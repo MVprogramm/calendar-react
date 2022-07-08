@@ -12,8 +12,9 @@ const Sidebar = (props) => {
       {hours.map((hour) => (
         <div className="time-slot">
           <span className="time-slot__time">
-            {hour === 0 ? "" : `${hour}:00`}
+            {hour === 0 ? "   " : `${hour}:00`}
           </span>
+          <div className="calendar__scale"></div>
         </div>
       ))}
     </div>
