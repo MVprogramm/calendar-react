@@ -1,11 +1,11 @@
-import React from 'react';
-import Day from '../day/Day';
+import React from "react";
+import Day from "../day/Day";
 
-import './week.scss';
+import "./week.scss";
 
-const Week = ({ weekDates, events }) => {
+const Week = ({ weekDates, events, slotHeight }) => {
   return (
-    <div className="calendar__week">
+    <>
       {weekDates.map((dayStart) => {
         const dayEnd = new Date(dayStart.getTime()).setHours(
           dayStart.getHours() + 24
@@ -21,10 +21,11 @@ const Week = ({ weekDates, events }) => {
             key={dayStart.getDate()}
             dataDay={dayStart.getDate()}
             dayEvents={dayEvents}
+            slotHeight={slotHeight}
           />
         );
       })}
-    </div>
+    </>
   );
 };
 

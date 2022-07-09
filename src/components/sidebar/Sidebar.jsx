@@ -2,7 +2,7 @@ import React from "react";
 
 import "./sidebar.scss";
 
-const Sidebar = (props) => {
+const Sidebar = ({ slotHeight }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
@@ -14,7 +14,7 @@ const Sidebar = (props) => {
           <span className="time-slot__time">
             {hour === 0 ? "   " : `${hour}:00`}
           </span>
-          <div className="calendar__scale"></div>
+          <div className="calendar__scale" style={slotHeight}></div>
         </div>
       ))}
     </div>
