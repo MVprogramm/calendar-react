@@ -8,9 +8,9 @@ const Day = ({ dataDay, dayEvents, slotHeight }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
-
+  const thisDay = new Date(dataDay).getDate();
   return (
-    <div className="calendar__day" data-day={dataDay}>
+    <div className="calendar__day" data-day={thisDay}>
       <ClockHand dataDay={dataDay} slotHeight={slotHeight} />
       {hours.map((hour) => {
         //getting all events from the day we will render
@@ -20,7 +20,7 @@ const Day = ({ dataDay, dayEvents, slotHeight }) => {
 
         return (
           <Hour
-            key={dataDay + hour}
+            key={thisDay + hour}
             dataHour={hour}
             hourEvents={hourEvents}
             slotHeight={slotHeight}

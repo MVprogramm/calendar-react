@@ -99,3 +99,13 @@ index(
         12.10. set time as "Clockhand" position with "top" property
         12.11. "top" is calculated from the current time and hour cell height
     13. add a modal window to create an event
+        13.1. add to "App" component state "isModal" variable: true/false - show/hide modal window
+        13.2. add to "App" component "callModal()" and "closeModal()" functions to control modal window
+        13.3. give "callModal()" function as prop to "Header" and "Calendar" to open modal window
+        13.4. add "callModal()" function to "Create" button attribute in Header.jsx
+        13.5. add "callModal()" function to ".calendar__week-container" attribute in Calendar.jsx
+        13.6. give "closeModal()" function as prop to "Clockhand" to close modal window
+        13.7. add "closeModal()" function to "Create" button attribute in Modal.jsx
+        13.8. add "closeModal()" function to ".create-event__close-btn" button attribute in Modal.jsx
+        13.1. change the layout and css to make the modal window look like in task design
+    14. create an event from modal window

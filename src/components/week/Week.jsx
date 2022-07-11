@@ -19,7 +19,7 @@ const Week = ({ weekDates, events, slotHeight }) => {
         return (
           <Day
             key={dayStart.getDate()}
-            dataDay={dayStart.getDate()}
+            dataDay={dayStart}
             dayEvents={dayEvents}
             slotHeight={slotHeight}
           />

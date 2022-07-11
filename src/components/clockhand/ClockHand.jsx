@@ -22,7 +22,7 @@ const ClockHand = ({ dataDay, slotHeight }) => {
   const timeScale = 60 * (60 / height) * 1000;
   const topLine = Math.round((currentTime - startTime - 100000) / timeScale);
 
-  if (new Date().getDate() !== dataDay) return null;
+  if (startTime !== new Date(dataDay).getTime()) return null;
   return (
     <div className="clock clock__line" style={{ top: topLine }}>
       <div className="clock clock__circle"></div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { days, months } from "../../utils/dateUtils.js";
 
 import "./modal.scss";
 
