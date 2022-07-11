@@ -7,9 +7,9 @@ const ClockHand = ({ dataDay, slotHeight }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(new Date().getTime());
-    }, 36000);
+    }, 1000 * 60);
 
-    return clearInterval(interval);
+    return () => clearInterval(interval);
   }, [currentTime]);
 
   const startTime = new Date(
@@ -20,7 +20,7 @@ const ClockHand = ({ dataDay, slotHeight }) => {
 
   const { height } = slotHeight;
   const timeScale = 60 * (60 / height) * 1000;
-  const topLine = Math.round((currentTime - startTime) / timeScale);
+  const topLine = Math.round((currentTime - startTime - 100000) / timeScale);
 
   if (new Date().getDate() !== dataDay) return null;
   return (

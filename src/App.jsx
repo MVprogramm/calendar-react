@@ -9,9 +9,20 @@ import {
 } from "../src/utils/dateUtils.js";
 
 import "./common.scss";
+import Modal from "./components/modal/Modal.jsx";
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
+  const [isModal, setModalStatus] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWeekStartDate(new Date());
+    }, 1000 * 60 * 60 * 24);
+
+    return () => clearInterval(interval);
+  }, [weekStartDate]);
+
   const weekTime = getTimeInterval(7);
 
   const favicon = document.querySelector("#favicon");
@@ -33,6 +44,16 @@ const App = () => {
     setWeekStartDate(new Date());
   };
 
+  const callModal = (event) => {
+    console.log(event);
+    setModalStatus(true);
+  };
+
+  const closeModal = (event) => {
+    console.log(event);
+    setModalStatus(false);
+  };
+
   return (
     <>
       <Header
@@ -40,8 +61,10 @@ const App = () => {
         comingWeek={comingWeek}
         currentWeek={currentWeek}
         weekStartDate={weekStartDate}
+        callModal={callModal}
       />
-      <Calendar weekDates={weekDates} />
+      <Calendar weekDates={weekDates} callModal={callModal} />
+      {isModal && <Modal closeModal={closeModal} />}
     </>
   );
 };

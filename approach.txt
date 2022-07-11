@@ -15,6 +15,7 @@ index(
             )
             ClockHand()
         )
+        Modal()
     )
 )
 
@@ -66,20 +67,35 @@ index(
         8.9. add onClick() attribute to today button with "currentWeek" function in "Header"
     9. rendering month and year to the right of arrows
         9.1. add the "getDisplayedMonth" function in dateUtils.js that returns string with displayed month and year
-        9.2. give "weekStartDate" props to "Header" component in App.jsx
+        9.2. give "weekStartDate" prop to "Header" component in App.jsx
         9.3. get prop "weekStartDate" in "Header" by destructuring
         9.4. import "getDisplayedMonth" function from dateUtils.js in Header.jsx
         9.5. display month and year using "getDisplayedMonth" with "weekStartDate" argument to the right of the arrows
     10. add styles to the calendar layout
         10.1. add border-bottom style and margin-bottom:10px to header in header.scss
         10.2. add cell element to all date in navigation.jsx
-        10.3. add overflow:hidden and padding:8px into body
+        10.3. add "overflow:hidden" and "padding:8px" into body
         10.4. hide the scrollbar in "calendar__body", the file calendar.scss
-        10.5. 
+        10.5. add "display:flex" and justify-content:center" to ".time-slot" in sidebar.jsx
+        10.6. change properties ".time-slot__time" in sidebar.jsx
     11. add GMT offset into calendar header in Navigation.jsx
         11.1. add '<div className="calendar__gmt"></div>' before calendar day labels in Header.jsx
         11.2. add to calendar.scss class "calendar__gmt"
         11.3. add time offset into div as return of "new Date().getTimezoneOffset()" function
     12. add the "ClockHand" to calendar
-        12.1. add a component "ClockHand" to Calendar.jsx
-        12.1. create ClockHand.jsx
+        12.1. make a clock scale in the calendar
+            12.1.1. create style object "slotHeight" with height of hour cells in "Calendar" component
+            12.1.2. give "slotHeight" as a prop to "Sidebar", "Hour" and "ClockHand"
+            12.1.3. use "slotHeight" to set css property into "calendar__time-slot" and "calendar__scale" classes
+            12.1.4. use "slotHeight" to calculate the clock scale in the "ClockHand" component
+        12.2. add a component "ClockHand" to Day.jsx
+        12.3. give "dataDay" prop to "ClockHand"
+        12.4. create ClockHand.jsx
+        12.5. set the current time into "ClockHand" state
+        12.6. run "ClockHand" rendering every minute with "useEffect()" hook
+        12.7. run "ClockHand" rendering if "dataDay" is the current day
+        12.8. add styles to clockhand.scss
+        12.9. class "clock" in it has "positions:absolute" property relative to "calendar__day" from calendar.scss
+        12.10. set time as "Clockhand" position with "top" property
+        12.11. "top" is calculated from the current time and hour cell height
+    13. add a modal window to create an event

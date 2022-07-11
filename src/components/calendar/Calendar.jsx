@@ -8,7 +8,7 @@ import events from "../../gateway/events";
 
 import "./calendar.scss";
 
-const Calendar = ({ weekDates }) => {
+const Calendar = ({ weekDates, callModal }) => {
   const [events] = useState([]);
   const slotHeight = { height: 60 };
 
@@ -16,7 +16,7 @@ const Calendar = ({ weekDates }) => {
     <section className="calendar">
       <Navigation weekDates={weekDates} />
       <div className="calendar__body">
-        <div className="calendar__week-container">
+        <div className="calendar__week-container" onClick={callModal}>
           <Sidebar slotHeight={slotHeight} />
           <Week weekDates={weekDates} events={events} slotHeight={slotHeight} />
         </div>

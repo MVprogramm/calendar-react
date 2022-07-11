@@ -3,7 +3,13 @@ import React from "react";
 import { getDisplayedMonth } from "../../utils/dateUtils.js";
 import "./header.scss";
 
-const Header = ({ prevWeek, comingWeek, currentWeek, weekStartDate }) => {
+const Header = ({
+  prevWeek,
+  comingWeek,
+  currentWeek,
+  weekStartDate,
+  callModal,
+}) => {
   return (
     <header className="header">
       <button className="button create-event-btn">
@@ -14,7 +20,9 @@ const Header = ({ prevWeek, comingWeek, currentWeek, weekStartDate }) => {
           <path fill="#EA4335" d="M20 16V6h-4v14z"></path>
           <path fill="none" d="M0 0h36v36H0z"></path>
         </svg>
-        <span className="create-event-btn__txt">Create</span>
+        <span className="create-event-btn__txt" onClick={callModal}>
+          Create
+        </span>
       </button>
       <div className="navigation">
         <button className="navigation__today-btn button" onClick={currentWeek}>
