@@ -14,7 +14,9 @@ import Modal from "./components/modal/Modal.jsx";
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
   const [isModal, setModalStatus] = useState(false);
-  const [eventDay, setEventDay] = useState(new Date());
+  const [eventDay, setEventDay] = useState(
+    new Date(new Date().getTime() + 1000 * 60 * 60)
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -55,9 +57,14 @@ const App = () => {
           event.target.dataset.time
         )
       );
+
+      setModalStatus(true);
     }
 
-    setModalStatus(true);
+    if (event.target.className === "create-event-btn__txt") {
+      setEventDay(new Date(new Date().getTime() + 1000 * 60 * 60));
+      setModalStatus(true);
+    }
   };
 
   const closeModal = (event) => {
