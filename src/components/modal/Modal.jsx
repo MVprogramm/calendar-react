@@ -1,9 +1,9 @@
 import React from "react";
-import { days, months } from "../../utils/dateUtils.js";
+import { getFormattedDate, getFormattedHours } from "../../utils/dateUtils.js";
 
 import "./modal.scss";
 
-const Modal = ({ closeModal }) => {
+const Modal = ({ closeModal, eventDay }) => {
   return (
     <div className="modal overlay">
       <div className="modal__content">
@@ -27,31 +27,23 @@ const Modal = ({ closeModal }) => {
 
               <label class="event-form__field event-form__field_date">
                 <input type="date" id="date" name="date" />
-                <span id="eventDay"></span>
+                <span id="eventDay">{getFormattedDate(eventDay)}</span>
               </label>
-              {/*<input type="date" name="date" className="event-form__field" />*/}
-
               <label class="event-form__field_start-time">
                 <input type="time" id="startTime" name="startTime" />
-                <span id="eventStartTime"></span>
+                <span id="eventStartTime">{getFormattedHours(eventDay)}</span>
               </label>
 
               <span class="event-form__field_interval">-</span>
 
               <label class="event-form__field event-form__field_end-time">
                 <input type="time" id="endTime" name="endTime" />
-                <span id="eventEndTime"></span>
+                <span id="eventEndTime">
+                  {getFormattedHours(
+                    new Date(eventDay.getTime() + 1000 * 60 * 60)
+                  )}
+                </span>
               </label>
-              {/*
-                <input
-                  type="time"
-                  name="startTime"
-                  className="event-form__field"
-                  onChange={this.handleChange}
-                />
-                <span>-</span>
-                <input type="time" name="endTime" className="event-form__field" />
-              */}
             </div>
             <i class="fas fa-align-left"></i>
             <textarea
@@ -60,13 +52,6 @@ const Modal = ({ closeModal }) => {
               class="event-form__field event-form__field_description"
             ></textarea>
             <div class="event-form__shield event-form__shield_description"></div>
-            {/*
-              <textarea
-                name="description"
-                placeholder="Description"
-                className="event-form__field"
-              ></textarea>
-            */}
             <button
               type="submit"
               className="event-form__submit-btn"

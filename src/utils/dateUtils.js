@@ -1,3 +1,8 @@
+const getTwoNumbersString = (num) => {
+  const twoNumbersString = num < 10 ? "0" + num : "" + num;
+  return twoNumbersString;
+};
+
 export const getTimeInterval = (days) => 1000 * 60 * 60 * 24 * days;
 
 export const getWeekStartDate = (date) => {
@@ -64,4 +69,16 @@ export const getDisplayedMonth = (date) => {
   return isSameYear
     ? `${monthsNames[startMonth]} - ${monthsNames[endMonth]} ${startYear}`
     : `${monthsNames[startMonth]} ${startYear} - ${monthsNames[endMonth]} ${endYear}`;
+};
+
+export const getFormattedDate = (date) => {
+  return `${getTwoNumbersString(date.getDate())} ${
+    months[date.getMonth()]
+  } ${date.getFullYear()}`;
+};
+
+export const getFormattedHours = (date) => {
+  return `${getTwoNumbersString(date.getHours())}:${getTwoNumbersString(
+    date.getMinutes()
+  )}`;
 };

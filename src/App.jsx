@@ -14,6 +14,7 @@ import Modal from "./components/modal/Modal.jsx";
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
   const [isModal, setModalStatus] = useState(false);
+  const [eventDay, setEventDay] = useState(new Date());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,12 +46,21 @@ const App = () => {
   };
 
   const callModal = (event) => {
-    console.log(event);
+    if (event.target.className === "calendar__time-slot") {
+      setEventDay(
+        new Date(
+          new Date(weekStartDate).getFullYear(),
+          new Date(weekStartDate).getMonth(),
+          event.target.offsetParent.dataset.day,
+          event.target.dataset.time
+        )
+      );
+    }
+
     setModalStatus(true);
   };
 
   const closeModal = (event) => {
-    console.log(event);
     setModalStatus(false);
   };
 
@@ -64,7 +74,7 @@ const App = () => {
         callModal={callModal}
       />
       <Calendar weekDates={weekDates} callModal={callModal} />
-      {isModal && <Modal closeModal={closeModal} />}
+      {isModal && <Modal closeModal={closeModal} eventDay={eventDay} />}
     </>
   );
 };
