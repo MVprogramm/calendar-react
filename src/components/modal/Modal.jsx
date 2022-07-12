@@ -31,18 +31,18 @@ const Modal = ({ closeModal, eventDay }) => {
               </label>
               <label class="event-form__field_start-time">
                 <input type="time" id="startTime" name="startTime" />
-                <span id="eventStartTime">{getFormattedHours(eventDay)}</span>
+                <span id="eventStartTime">
+                  {getFormattedHours(
+                    new Date(eventDay.getTime() - 1000 * 60 * 60)
+                  )}
+                </span>
               </label>
 
               <span class="event-form__field_interval">-</span>
 
               <label class="event-form__field event-form__field_end-time">
                 <input type="time" id="endTime" name="endTime" />
-                <span id="eventEndTime">
-                  {getFormattedHours(
-                    new Date(eventDay.getTime() + 1000 * 60 * 60)
-                  )}
-                </span>
+                <span id="eventEndTime">{getFormattedHours(eventDay)}</span>
               </label>
             </div>
             <i class="fas fa-align-left"></i>

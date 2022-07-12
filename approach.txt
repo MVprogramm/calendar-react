@@ -117,5 +117,5 @@ index(
                     time from event props in function "callModal"
             14.1.5. make functions "getFormattedDate" and "getFormattedHours" in dateUtils.js to display 
                     event time on modal window in correct format
-            14.1.6. display event time in ".eventDay" and ".eventStartTime" elements
-            14.1.7. display event end time in ".eventEndTime" element after one hour
+            14.1.6. display event time in ".eventDay" and ".eventEndTime" elements
+            14.1.7. display event start time in ".eventStartTime" element before one hour
