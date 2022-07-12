@@ -109,3 +109,13 @@ index(
         13.8. add "closeModal()" function to ".create-event__close-btn" button attribute in Modal.jsx
         13.1. change the layout and css to make the modal window look like in task design
     14. create an event from modal window
+        14.1. set event time
+            14.1.1. add variable "eventDay" to state of "App" component with "new Date()" as initial value
+            14.1.2. "Modal" component gets "eventDay" as a prop
+            14.1.3. if modal window is called from "Create" button, "Modal" component gets current time in "eventDay"
+            14.1.4. if modal window is called from ".calendar__time-slot", "Modal" component gets specific 
+                    time from event props in function "callModal"
+            14.1.5. make functions "getFormattedDate" and "getFormattedHours" in dateUtils.js to display 
+                    event time on modal window in correct format
+            14.1.6. display event time in ".eventDay" and ".eventStartTime" elements
+            14.1.7. display event end time in ".eventEndTime" element after one hour
