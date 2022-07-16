@@ -18,7 +18,10 @@ const Navigation = ({ weekDates }) => {
       {weekDates.map((dayDate) => {
         dayToday === dayDate.getTime() ? (isToday = true) : (isToday = false);
         return (
-          <div className="calendar__day-label day-label">
+          <div
+            className="calendar__day-label day-label"
+            key={dayDate.getTime()}
+          >
             <span
               className={classNames("day-label__day-name", {
                 "day-label__day-name_today": isToday === true,

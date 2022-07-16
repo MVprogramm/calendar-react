@@ -1,23 +1,30 @@
 .event {
+  display: flex;
   position: absolute;
-  width: 80%;
-  background-color: cornflowerblue;
+  font-size: 11px;
+  width: 90%;
+  background-color: #4285f4;
   z-index: 1;
   border-radius: 8px;
   padding: 8px;
   color: #fff;
 
   &__title {
-    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-bottom: 8px;
+    margin-right: 8px;
+  }
+
+  &__time {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &:hover {
-    font-weight: bold;
-    background-color: red;
+    opacity: 0.85;
+    cursor: pointer;
   }
 }
 

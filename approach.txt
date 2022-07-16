@@ -8,6 +8,7 @@ index(
             Sidebar()
             Week(
                 Day(
+                    ClockHand()
                     Hour(
                         Event()
                     )
@@ -19,15 +20,47 @@ index(
     )
 )
 
-2. state:
+2. states:
 
     1. weekStartDate(App, weekStartDate => weekDates)
-    2. events(Calendar)
+    2. eventsList(App)
+    3. isModal(App)
+    4. eventTitle(App)
+    5. eventDay(App)
+    6. eventStartTime(App)
+    7. eventEndTime(App)
+    8. eventDescription(App)
 
-3. data flow:
+3. data flows (-> "direct", => "with transformation"):
 
-    1. arr.weekDates(App -> [Calendar -> Week => Day => Hours, Header -> Navigation])
-    2. arr.events(Calendar -> Week => Day => Hours)
+    1. arr.weekDates(App -> [
+            Calendar -> Week =>dayStart=> Day, 
+            Header -> Navigation
+       ])
+    2. arr.eventsList(App -> Calendar -> Week => Day => Hour)
+    3. prevWeek()(App -> Header)
+    4. comingWeek()(App -> Header)
+    5. currentWeek()(App -> Header)
+    6. weekStartDate(App -> Header)
+    7. callModal()(App -> [Header, Calendar])
+    8. closeModal()(App -> Modal)
+    9. onSubmit()(App -> Modal)
+    10. eventDay(App -> Modal)
+    11. setEventDay()(App -> Modal)
+    12. eventStartTime(App -> Modal)
+    13. setEventStartTime()(App -> Modal)
+    14. eventEndTime(App -> Modal)
+    15. setEventEndTime()(App -> Modal)
+    16. setEventTitle()(App -> Modal)
+    17. eventTitle(App -> Modal)
+    18. setEventDescription()(App -> Modal)
+    19. eventDescription(App -> Modal)
+    20. obj.slotHeight(Calendar -> [Sidebar, Week -> Day -> Hour])
+    20. height(Hour -> Event)
+    21. marginTop(Hour -> Event)
+    22. flexDirection(Hour -> Event)
+    23. time(Hour -> Event)
+    24. title(Hour -> Event)
 
 4. actions:
 
@@ -119,3 +152,24 @@ index(
                     event time on modal window in correct format
             14.1.6. display event time in ".eventDay" and ".eventEndTime" elements
             14.1.7. display event start time in ".eventStartTime" element before one hour
+        14.2. make controlled form input
+            14.2.1. add variables "eventTitle", "eventDay", "eventStartTime", "eventEndTime" and 
+                    "eventDescription" to state of "App" component
+            14.2.2. set "" as initial variables for "eventTitle" and "eventDescription"
+            14.2.3. set current day, month and year as initial value for "eventDay"
+            14.2.4. set current hours and minutes as initial value for "eventStartTime"
+            14.2.5  set "eventStartTime" + 1 hour as initial value for "eventEndTime"
+            14.2.6. make functions "set...()" to get all state variables from modal window
+            14.2.7. give state variables and functions for them to "Modal" as props
+            14.2.8. use state variables into value attribute of input elements
+            14.2.9. add "onChange" attribute to input elements to use props functions
+    15. add date and time pickers to appropriate inputs with showPicker() method
+    16. save event data in "Calendar" state
+    17. make api functions to interact with server in gateway.js
+    18. set api functions in components
+    19. display events on calendar
+        19.1. add style "display:flex" to "event" class in event.scss
+        19.2. add style "flexDirection" to style object in Hour.jsx
+        19.3. if height of event block  is less than 30px, "flexDirection" is "row", otherwise "column"
+        19.4. change some styles of event block to look like google calendar
+    20. add keys to lists into ".calendar__day-label" in Navigation.jsx and ".time-slot" in Sidebar.jsx

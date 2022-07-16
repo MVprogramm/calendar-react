@@ -3,7 +3,42 @@ import { getFormattedDate, getFormattedHours } from "../../utils/dateUtils.js";
 
 import "./modal.scss";
 
-const Modal = ({ closeModal, eventDay }) => {
+const Modal = ({
+  closeModal,
+  onSubmit,
+  eventDay,
+  setEventDay,
+  eventTitle,
+  setEventTitle,
+  eventStartTime,
+  setEventStartTime,
+  eventEndTime,
+  setEventEndTime,
+  eventDescription,
+  setEventDescription,
+}) => {
+  const handleTitleInput = (event) => {
+    setEventTitle(event.target.value);
+  };
+  const handleDescriptionInput = (event) => {
+    setEventDescription(event.target.value);
+  };
+  const showDatePicker = (event) => {
+    event.target.previousElementSibling.showPicker();
+  };
+  const handleDateInput = (event) => {
+    setEventDay(new Date(event.target.value));
+  };
+  const showTimePicker = (event) => {
+    event.target.previousElementSibling.showPicker();
+  };
+  const handleStartTimeInput = (event) => {
+    setEventStartTime(event.target.value);
+  };
+  const handleEndTimeInput = (event) => {
+    setEventEndTime(event.target.value);
+  };
+
   return (
     <div className="modal overlay">
       <div className="modal__content">
@@ -14,49 +49,69 @@ const Modal = ({ closeModal, eventDay }) => {
               src="https://img.icons8.com/material-outlined/18/5f6368/delete-sign.png"
             />
           </button>
-          <form className="event-form">
+          <form className="event-form" onSubmit={onSubmit}>
             <input
               type="text"
               name="title"
               placeholder="Title"
               className="event-form__field event-form__field_title"
+              value={eventTitle}
+              onChange={handleTitleInput}
             />
-            <div class="event-form__shield event-form__shield_title"></div>
+            <div className="event-form__shield event-form__shield_title"></div>
             <div className="event-form__time">
               <i className="far fa-clock"></i>
 
-              <label class="event-form__field event-form__field_date">
-                <input type="date" id="date" name="date" />
-                <span id="eventDay">{getFormattedDate(eventDay)}</span>
+              <label className="event-form__field event-form__field_date">
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  value={eventDay}
+                  onChange={handleDateInput}
+                />
+                <span id="eventDay" onClick={showDatePicker}>
+                  {getFormattedDate(eventDay)}
+                </span>
               </label>
-              <label class="event-form__field_start-time">
-                <input type="time" id="startTime" name="startTime" />
-                <span id="eventStartTime">
-                  {getFormattedHours(
-                    new Date(eventDay.getTime() - 1000 * 60 * 60)
-                  )}
+              <label className="event-form__field_start-time">
+                <input
+                  type="time"
+                  id="startTime"
+                  name="startTime"
+                  value={eventStartTime}
+                  onChange={handleStartTimeInput}
+                />
+                <span id="eventStartTime" onClick={showTimePicker}>
+                  {eventStartTime}
                 </span>
               </label>
 
-              <span class="event-form__field_interval">-</span>
+              <span className="event-form__field_interval">-</span>
 
-              <label class="event-form__field event-form__field_end-time">
-                <input type="time" id="endTime" name="endTime" />
-                <span id="eventEndTime">{getFormattedHours(eventDay)}</span>
+              <label className="event-form__field event-form__field_end-time">
+                <input
+                  type="time"
+                  id="endTime"
+                  name="endTime"
+                  value={eventEndTime}
+                  onChange={handleEndTimeInput}
+                />
+                <span id="eventEndTime" onClick={showTimePicker}>
+                  {eventEndTime}
+                </span>
               </label>
             </div>
-            <i class="fas fa-align-left"></i>
+            <i className="fas fa-align-left"></i>
             <textarea
               name="description"
               placeholder="Description"
-              class="event-form__field event-form__field_description"
+              className="event-form__field event-form__field_description"
+              value={eventDescription}
+              onChange={handleDescriptionInput}
             ></textarea>
-            <div class="event-form__shield event-form__shield_description"></div>
-            <button
-              type="submit"
-              className="event-form__submit-btn"
-              onClick={closeModal}
-            >
+            <div className="event-form__shield event-form__shield_description"></div>
+            <button type="submit" className="event-form__submit-btn">
               Create
             </button>
           </form>
