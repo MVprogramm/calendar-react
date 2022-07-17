@@ -11,7 +11,7 @@ export const createEvent = (eventData) =>
     body: JSON.stringify(eventData),
   }).then((res) => {
     if (!res.ok) {
-      throw new Error("Failed to create event");
+      throw new Error("Internal Server Error. Can't display events");
     }
   });
 
@@ -24,7 +24,7 @@ export const updateTask = (eventId, eventData) =>
     body: JSON.stringify(eventData),
   }).then((res) => {
     if (!res.ok) {
-      throw new Error("Failed to update event");
+      throw new Error("Internal Server Error. Can't update events");
     }
   });
 
@@ -33,6 +33,6 @@ export const deleteEvent = (eventId) =>
     method: "DELETE",
   }).then((res) => {
     if (!res.ok) {
-      throw new Error("Failed to delete event");
+      throw new Error("Internal Server Error. Can't delete events");
     }
   });

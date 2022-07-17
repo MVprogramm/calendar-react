@@ -54,10 +54,9 @@ const App = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    closeModal();
 
     const currentEvent = {
-      title: eventTitle,
+      title: eventTitle ? eventTitle : "(no title)",
       description: eventDescription,
       dateFrom: `${new Date(eventDay).getFullYear()}-${
         new Date(eventDay).getMonth() + 1
@@ -67,7 +66,25 @@ const App = () => {
       }-${new Date(eventDay).getDate()} ${eventEndTime}`,
     };
 
-    createEvent(currentEvent).then(() => fetchEvents());
+    const dateFromTime = new Date(currentEvent.dateFrom).getTime();
+    const dateToTime = new Date(currentEvent.dateTo).getTime();
+
+    if (
+      eventsList.some(
+        (event) =>
+          (dateFromTime >= new Date(event.dateFrom).getTime() &&
+            dateFromTime <= new Date(event.dateTo).getTime()) ||
+          (dateToTime >= new Date(event.dateFrom).getTime() &&
+            dateToTime <= new Date(event.dateTo).getTime()) ||
+          (dateFromTime <= new Date(event.dateTo).getTime() &&
+            dateToTime >= new Date(event.dateFrom).getTime())
+      )
+    ) {
+      alert("This interval overlaps another event");
+    } else {
+      closeModal();
+      createEvent(currentEvent).then(() => fetchEvents());
+    }
   };
 
   const favicon = document.querySelector("#favicon");

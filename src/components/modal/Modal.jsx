@@ -1,5 +1,5 @@
 import React from "react";
-import { getFormattedDate, getFormattedHours } from "../../utils/dateUtils.js";
+import { getFormattedDate, setTimeFormat } from "../../utils/dateUtils.js";
 
 import "./modal.scss";
 
@@ -33,10 +33,10 @@ const Modal = ({
     event.target.previousElementSibling.showPicker();
   };
   const handleStartTimeInput = (event) => {
-    setEventStartTime(event.target.value);
+    setEventStartTime(setTimeFormat([event.target.value, eventEndTime])[0]);
   };
   const handleEndTimeInput = (event) => {
-    setEventEndTime(event.target.value);
+    setEventEndTime(setTimeFormat([eventStartTime, event.target.value])[1]);
   };
 
   return (
@@ -83,7 +83,7 @@ const Modal = ({
                   onChange={handleStartTimeInput}
                 />
                 <span id="eventStartTime" onClick={showTimePicker}>
-                  {eventStartTime}
+                  {setTimeFormat([eventStartTime, eventEndTime])[0]}
                 </span>
               </label>
 
@@ -98,7 +98,7 @@ const Modal = ({
                   onChange={handleEndTimeInput}
                 />
                 <span id="eventEndTime" onClick={showTimePicker}>
-                  {eventEndTime}
+                  {setTimeFormat([eventStartTime, eventEndTime])[1]}
                 </span>
               </label>
             </div>

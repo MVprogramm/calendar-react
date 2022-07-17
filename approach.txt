@@ -164,9 +164,24 @@ index(
             14.2.8. use state variables into value attribute of input elements
             14.2.9. add "onChange" attribute to input elements to use props functions
     15. add date and time pickers to appropriate inputs with showPicker() method
+        15.1. hide all date inputs
+        15.2. put all date inputs in label elements and create span elements for input value side by side
+        15.3. put the same value in input and span elements
+        15.4. give onClick() handlers into span elements 
+        15.5. put showPicker() methods for span elements in onClick() function
+        15.6. make "setTimeFormat" validation function for time input in dateUtils.js
+        15.7. put setTimeFormat into span elements
+        15.8. put rule so events don't overlap in "onSubmit" function 
     16. save event data in "Calendar" state
+        16.1. add to form in modal window onSubmit() function
+        16.2. make onSubmit() function in "App" component
+        16.3. make in onSubmit() function "currentEvent" object with event data properties from "App" state
     17. make api functions to interact with server in gateway.js
+        17.1. "fetchEventsList" function gets eventsList from server in json format
+        17.2. "createEvent" function sends new event to server with POST method and again gets eventsList from server
     18. set api functions in components
+        18.1. "fetchEventsList" function fires as componentDidMount using useEffect when eventsList is empty
+        18.2. "createEvent" function fires in onSubmit() function after "currentEvent" object has been created
     19. display events on calendar
         19.1. add style "display:flex" to "event" class in event.scss
         19.2. add style "flexDirection" to style object in Hour.jsx

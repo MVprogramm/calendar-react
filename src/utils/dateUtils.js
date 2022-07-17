@@ -82,3 +82,41 @@ export const getFormattedHours = (date) => {
     date.getMinutes()
   )}`;
 };
+
+export const setTimeFormat = ([startTime, endTime]) => {
+  let startHour = startTime.split(":").map((el) => +el)[0];
+  let startMinute = startTime.split(":").map((el) => +el)[1];
+  let endHour = endTime.split(":").map((el) => +el)[0];
+  let endMinute = endTime.split(":").map((el) => +el)[1];
+
+  if (endHour < startHour) endHour = startHour;
+  if (endHour - startHour > 6) endHour = startHour + 6;
+
+  startMinute = Math.round(startMinute / 15) * 15;
+  endMinute = Math.round(endMinute / 15) * 15;
+
+  if (startMinute === 60) {
+    startHour++;
+    startMinute = 0;
+  }
+  if (endMinute === 60) {
+    endHour++;
+    endMinute = 0;
+  }
+
+  if (endHour === startHour && startMinute < 30 && endMinute < startMinute + 30)
+    endMinute = startMinute + 30;
+  if (endHour === startHour && startMinute >= 30) endHour = startHour + 1;
+  if (endHour === startHour + 1 && startMinute === 45 && endMinute === 0)
+    endMinute = 15;
+  if (startHour === 23 && startMinute >= 30) {
+    startMinute = 30;
+    endHour = 24;
+    endMinute = 0;
+  }
+
+  return [
+    `${getTwoNumbersString(startHour)}:${getTwoNumbersString(startMinute)}`,
+    `${getTwoNumbersString(endHour)}:${getTwoNumbersString(endMinute)}`,
+  ];
+};
