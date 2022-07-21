@@ -25,9 +25,7 @@ const App = () => {
   const [isModal, setModalStatus] = useState("");
   const [eventID, setEventID] = useState(0);
   const [eventTitle, setEventTitle] = useState("");
-  const [eventDay, setEventDay] = useState(
-    new Date(new Date().getTime() + 1000 * 60 * 60)
-  );
+  const [eventDay, setEventDay] = useState(new Date());
   const [eventStartTime, setEventStartTime] = useState(
     getFormattedHours(new Date())
   );
@@ -173,8 +171,11 @@ const App = () => {
     }
 
     if (event.target.className === "create-event-btn__txt") {
-      console.log(new Date());
       setEventDay(new Date());
+      setEventStartTime(getFormattedHours(new Date()));
+      setEventEndTime(
+        getFormattedHours(new Date(new Date().getTime() + 1000 * 60 * 60))
+      );
       setModalStatus("create");
     }
 
