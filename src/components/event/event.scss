@@ -26,6 +26,10 @@
     opacity: 0.85;
     cursor: pointer;
   }
+
+  &_done {
+    text-decoration: line-through;
+  }
 }
 
 .delete-event-btn {

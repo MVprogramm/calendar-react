@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import propTypes from "prop-types";
 
 import "./clockhand.scss";
 
@@ -28,6 +29,11 @@ const ClockHand = ({ dataDay, slotHeight }) => {
       <div className="clock clock__circle"></div>
     </div>
   );
+};
+
+ClockHand.propTypes = {
+  dataDay: propTypes.instanceOf(Date).isRequired,
+  slotHeight: propTypes.object.isRequired,
 };
 
 export default ClockHand;

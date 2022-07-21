@@ -1,0 +1,46 @@
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  position: relative;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+
+  &:hover > div {
+    opacity: 0.4;
+  }
+
+  &__circle {
+    position: absolute;
+
+    height: 32px;
+    width: 32px;
+
+    background-color: #f1f3f4;
+
+    border-radius: 50%;
+
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
+// .btn {
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
+
+//   height: 36px;
+
+//   border: none;
+//   background-color: transparent;
+
+//   &__img {
+//     cursor: pointer;
+//   }
+// }

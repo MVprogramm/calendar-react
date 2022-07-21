@@ -13,6 +13,7 @@ import {
 import {
   fetchEventsList,
   createEvent,
+  getEvent,
   updateEvent,
   deleteEvent,
 } from "./gateway/gateway";
@@ -21,7 +22,8 @@ import "./common.scss";
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
-  const [isModal, setModalStatus] = useState(false);
+  const [isModal, setModalStatus] = useState("");
+  const [eventID, setEventID] = useState(0);
   const [eventTitle, setEventTitle] = useState("");
   const [eventDay, setEventDay] = useState(
     new Date(new Date().getTime() + 1000 * 60 * 60)
@@ -33,6 +35,7 @@ const App = () => {
     getFormattedHours(new Date(new Date().getTime() + 1000 * 60 * 60))
   );
   const [eventDescription, setEventDescription] = useState("");
+  const [eventDone, setEventDone] = useState(false);
   const [eventsList, setEventList] = useState([]);
 
   useEffect(() => {
@@ -56,6 +59,7 @@ const App = () => {
     event.preventDefault();
 
     const currentEvent = {
+      id: eventID,
       title: eventTitle ? eventTitle : "(no title)",
       description: eventDescription,
       dateFrom: `${new Date(eventDay).getFullYear()}-${
@@ -64,26 +68,44 @@ const App = () => {
       dateTo: `${new Date(eventDay).getFullYear()}-${
         new Date(eventDay).getMonth() + 1
       }-${new Date(eventDay).getDate()} ${eventEndTime}`,
+      done: isModal === "control" ? !eventDone : eventDone,
     };
 
-    const dateFromTime = new Date(currentEvent.dateFrom).getTime();
-    const dateToTime = new Date(currentEvent.dateTo).getTime();
+    if (isModal === "create") {
+      const dateFromTime = new Date(currentEvent.dateFrom).getTime();
+      const dateToTime = new Date(currentEvent.dateTo).getTime();
 
-    if (
-      eventsList.some(
-        (event) =>
-          (dateFromTime >= new Date(event.dateFrom).getTime() &&
-            dateFromTime <= new Date(event.dateTo).getTime()) ||
-          (dateToTime >= new Date(event.dateFrom).getTime() &&
-            dateToTime <= new Date(event.dateTo).getTime()) ||
-          (dateFromTime <= new Date(event.dateTo).getTime() &&
-            dateToTime >= new Date(event.dateFrom).getTime())
-      )
-    ) {
-      alert("This interval overlaps another event");
-    } else {
+      if (
+        eventsList.some(
+          (event) =>
+            (dateFromTime >= new Date(event.dateFrom).getTime() &&
+              dateFromTime <= new Date(event.dateTo).getTime()) ||
+            (dateToTime >= new Date(event.dateFrom).getTime() &&
+              dateToTime <= new Date(event.dateTo).getTime()) ||
+            (dateFromTime <= new Date(event.dateTo).getTime() &&
+              dateToTime >= new Date(event.dateFrom).getTime())
+        )
+      ) {
+        alert("This interval overlaps another event");
+      } else {
+        closeModal();
+        createEvent(currentEvent).then(() => fetchEvents());
+      }
+    }
+
+    if (isModal === "delete") {
       closeModal();
-      createEvent(currentEvent).then(() => fetchEvents());
+      deleteEvent(currentEvent.id).then(() => fetchEvents());
+    }
+
+    if (isModal === "edit") {
+      closeModal();
+      updateEvent(currentEvent.id, currentEvent).then(() => fetchEvents());
+    }
+
+    if (isModal === "control") {
+      closeModal();
+      updateEvent(currentEvent.id, currentEvent).then(() => fetchEvents());
     }
   };
 
@@ -91,6 +113,15 @@ const App = () => {
   favicon.href = `https://calendar.google.com/googlecalendar/images/favicons_2020q4/calendar_${new Date().getDate()}.ico`;
 
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
+  const setEvent = (event) => {
+    setEventID(event.id);
+    setEventTitle(event.title);
+    setEventDay(new Date(event.dateFrom));
+    setEventStartTime(getFormattedHours(new Date(event.dateFrom)));
+    setEventEndTime(getFormattedHours(new Date(event.dateTo)));
+    setEventDescription(event.description);
+    setEventDone(event.done);
+  };
 
   const prevWeek = () => {
     const lastWeek = new Date(new Date(weekStartDate).getTime() - weekTime);
@@ -138,12 +169,39 @@ const App = () => {
         )
       );
 
-      setModalStatus(true);
+      setModalStatus("create");
     }
 
     if (event.target.className === "create-event-btn__txt") {
       setEventDay(new Date(new Date().getTime() + 1000 * 60 * 60));
-      setModalStatus(true);
+      setModalStatus("create");
+    }
+
+    if (event.target.className === "event") {
+      getEvent(event.target.dataset.id)
+        .then((event) => {
+          setEvent(event);
+
+          return event;
+        })
+        .then((event) => {
+          setModalStatus("control");
+        });
+    }
+
+    if (
+      event.target.className === "event__title" ||
+      event.target.className === "event__time"
+    ) {
+      getEvent(event.target.offsetParent.dataset.id)
+        .then((event) => {
+          setEvent(event);
+
+          return event;
+        })
+        .then((event) => {
+          setModalStatus("control");
+        });
     }
   };
 
@@ -167,6 +225,8 @@ const App = () => {
       />
       {isModal && (
         <Modal
+          isModal={isModal}
+          setModalStatus={setModalStatus}
           closeModal={closeModal}
           onSubmit={onSubmit}
           eventDay={eventDay}
@@ -179,6 +239,8 @@ const App = () => {
           eventTitle={eventTitle}
           setEventDescription={setEventDescription}
           eventDescription={eventDescription}
+          setEventDone={setEventDone}
+          eventDone={eventDone}
         />
       )}
     </>

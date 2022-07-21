@@ -15,7 +15,10 @@ export const createEvent = (eventData) =>
     }
   });
 
-export const updateTask = (eventId, eventData) =>
+export const getEvent = (eventId) =>
+  fetch(`${baseURL}/${eventId}`).then((res) => res.json());
+
+export const updateEvent = (eventId, eventData) =>
   fetch(`${baseURL}/${eventId}`, {
     method: "PUT",
     headers: {

@@ -1,7 +1,9 @@
 import React from "react";
+import propTypes from "prop-types";
 
 import { getDisplayedMonth } from "../../utils/dateUtils.js";
 import "./header.scss";
+import IconButton from "../iconButton/IconButton.jsx";
 
 const Header = ({
   prevWeek,
@@ -28,23 +30,34 @@ const Header = ({
         <button className="navigation__today-btn button" onClick={currentWeek}>
           Today
         </button>
-        <button className="icon-button navigation__nav-icon" onClick={prevWeek}>
-          <div className="icon-button__circle"></div>
-          <i className="fas fa-chevron-left"></i>
-        </button>
-        <button
-          className="icon-button navigation__nav-icon"
+        <IconButton
+          icon={<i className="fas fa-chevron-left"></i>}
+          onClick={prevWeek}
+          style={{
+            fontSize: 16,
+          }}
+        />
+        <IconButton
+          icon={<i className="fas fa-chevron-right"></i>}
           onClick={comingWeek}
-        >
-          <div className="icon-button__circle"></div>
-          <i className="fas fa-chevron-right"></i>
-        </button>
+          style={{
+            fontSize: 16,
+          }}
+        />
         <span className="navigation__displayed-month">
           {getDisplayedMonth(weekStartDate)}
         </span>
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  prevWeek: propTypes.func.isRequired,
+  comingWeek: propTypes.func.isRequired,
+  currentWeek: propTypes.func.isRequired,
+  weekStartDate: propTypes.instanceOf(Date).isRequired,
+  callModal: propTypes.func.isRequired,
 };
 
 export default Header;

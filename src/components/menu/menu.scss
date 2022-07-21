@@ -1,0 +1,19 @@
+.menu {
+  display: flex;
+  justify-content: end;
+}
+
+.btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  height: 36px;
+
+  border: none;
+  background-color: transparent;
+
+  &__img {
+    cursor: pointer;
+  }
+}

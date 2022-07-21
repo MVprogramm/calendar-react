@@ -1,0 +1,32 @@
+@import "../../components/../utils/variables.scss";
+
+.event-form {
+  // &__field {
+  //   &_date {
+  //     font-size: 16px;
+  //     padding-top: 18px;
+  //     padding-left: 0;
+  //     margin-left: 15%;
+  //     margin-top: -18px;
+  //   }
+
+  //   &_hover {
+  //     border-bottom-width: 0;
+  //     border-bottom-style: solid;
+  //     border-bottom-color: $todayColor;
+  //     transition: border-bottom-width 100ms;
+
+  //     &:hover {
+  //       border-bottom-width: 2px;
+
+  //       transition: border-bottom-width 100ms;
+  //       cursor: pointer;
+  //     }
+  //   }
+  // }
+}
+
+#date {
+  position: absolute;
+  visibility: hidden;
+}

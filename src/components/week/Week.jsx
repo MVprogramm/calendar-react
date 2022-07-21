@@ -1,9 +1,11 @@
 import React from "react";
+import propTypes from "prop-types";
+
 import Day from "../day/Day";
 
 import "./week.scss";
 
-const Week = ({ weekDates, eventsList, slotHeight }) => {
+const Week = ({ weekDates, eventsList, slotHeight, callModal }) => {
   return (
     <>
       {weekDates.map((dayStart) => {
@@ -24,11 +26,19 @@ const Week = ({ weekDates, eventsList, slotHeight }) => {
             dataDay={dayStart}
             dayEvents={dayEvents}
             slotHeight={slotHeight}
+            callModal={callModal}
           />
         );
       })}
     </>
   );
+};
+
+Week.propTypes = {
+  weekDates: propTypes.array.isRequired,
+  eventsList: propTypes.array.isRequired,
+  slotHeight: propTypes.object.isRequired,
+  callModal: propTypes.func.isRequired,
 };
 
 export default Week;

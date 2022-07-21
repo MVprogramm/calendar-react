@@ -2,7 +2,10 @@
 
 index(
     App(
-        Header()
+        Header(
+            IconButton("arrow-left")
+            IconButton("arrow-right")
+        )
         Calendar(
             Navigation()
             Sidebar()
@@ -16,7 +19,17 @@ index(
             )
             ClockHand()
         )
-        Modal()
+        Modal(
+            Menu(
+                IconButton("close")
+                IconButton("delete")
+                IconButton("edit")
+            )
+            Form(
+                Inputs()
+                Submit()
+            )
+        )
     )
 )
 

@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 
 import "./sidebar.scss";
 
@@ -19,6 +20,10 @@ const Sidebar = ({ slotHeight }) => {
       ))}
     </div>
   );
+};
+
+Sidebar.propTypes = {
+  slotHeight: propTypes.object.isRequired,
 };
 
 export default Sidebar;

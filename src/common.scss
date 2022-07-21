@@ -7,32 +7,6 @@
   font-weight: 500;
 }
 
-.icon-button {
-  outline: none;
-  border: none;
-  cursor: pointer;
-  background: transparent;
-
-  &:hover > div {
-    opacity: 1;
-  }
-
-  &__circle {
-    position: absolute;
-    top: -6px;
-    left: -6px;
-    height: 32px;
-    width: 32px;
-
-    background-color: #f1f3f4;
-
-    border-radius: 50%;
-
-    opacity: 0;
-    z-index: -1;
-  }
-}
-
 .modal {
   position: fixed;
   display: flex;

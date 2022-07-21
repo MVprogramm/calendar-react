@@ -1,9 +1,10 @@
 import React from "react";
+import propTypes from "prop-types";
 
 import Event from "../event/Event";
 import { formatMins } from "../../../src/utils/dateUtils.js";
 
-const Hour = ({ dataHour, hourEvents, slotHeight }) => {
+const Hour = ({ dataHour, hourEvents, slotHeight, callModal }) => {
   return (
     <div
       className="calendar__time-slot"
@@ -11,7 +12,7 @@ const Hour = ({ dataHour, hourEvents, slotHeight }) => {
       data-time={dataHour + 1}
     >
       {/* if no events in the current hour nothing will render here */}
-      {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
+      {hourEvents.map(({ id, dateFrom, dateTo, title, done }) => {
         const from = new Date(dateFrom);
         const to = new Date(dateTo);
         const eventStart = `${from.getHours()}:${formatMins(
@@ -31,11 +32,21 @@ const Hour = ({ dataHour, hourEvents, slotHeight }) => {
             flexDirection={flexDirection}
             time={`${eventStart} - ${eventEnd}`}
             title={title}
+            done={done}
+            id={id}
+            callModal={callModal}
           />
         );
       })}
     </div>
   );
+};
+
+Hour.propTypes = {
+  dataHour: propTypes.number.isRequired,
+  hourEvents: propTypes.array.isRequired,
+  slotHeight: propTypes.object.isRequired,
+  callModal: propTypes.func.isRequired,
 };
 
 export default Hour;

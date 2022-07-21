@@ -35,42 +35,18 @@
   z-index: 10;
 }
 
-.create-event {
-  &__close-btn {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    height: 36px;
-    margin-left: 92%;
-
-    border: none;
-    background-color: transparent;
-  }
-
-  &__img {
-    cursor: pointer;
-  }
-}
-
 .event-form {
   &__field {
     height: 40px;
-
     color: $textGrey;
-
     border: none;
-
     outline: none;
 
     &_title {
       width: 80%;
-
       font-size: 24px;
       font-weight: 500;
-
       border-bottom: 1px solid $gridColor;
-
       margin-left: 15%;
 
       &:hover + div,
@@ -84,23 +60,23 @@
     &_date {
       font-size: 16px;
 
-      border-bottom-width: 0;
-      border-bottom-style: solid;
-      border-bottom-color: $todayColor;
-
       padding-top: 18px;
       padding-left: 0;
       margin-left: 15%;
       margin-top: -18px;
+    }
 
-      cursor: pointer;
-
+    &_hover {
+      border-bottom-width: 0;
+      border-bottom-style: solid;
+      border-bottom-color: $todayColor;
       transition: border-bottom-width 100ms;
 
       &:hover {
         border-bottom-width: 2px;
 
         transition: border-bottom-width 100ms;
+        cursor: pointer;
       }
     }
 
@@ -113,16 +89,6 @@
 
       margin-left: 24px;
       padding-left: 0;
-
-      cursor: pointer;
-
-      transition: border-bottom-width 100ms;
-
-      &:hover {
-        border-bottom-width: 2px;
-
-        transition: border-bottom-width 100ms;
-      }
     }
 
     &_end-time {
@@ -135,16 +101,6 @@
       padding-left: 0;
       padding-top: 20px;
       margin-top: -20px;
-
-      cursor: pointer;
-
-      transition: border-bottom-width 100ms;
-
-      &:hover {
-        border-bottom-width: 2px;
-
-        transition: border-bottom-width 100ms;
-      }
     }
 
     &_interval {
@@ -154,13 +110,13 @@
 
     &_description {
       width: 80%;
-      height: 50px;
-
-      font-size: 16px;
-
+      height: 80px;
+      font-size: 14px;
       resize: none;
+      padding: 10px;
+      border-radius: 5%;
       margin-left: 15%;
-      margin-bottom: 20px;
+      margin-bottom: -4px;
 
       &:hover + div,
       &:focus + div {
@@ -168,6 +124,18 @@
 
         transition: width 100ms;
       }
+    }
+
+    &_done {
+      text-decoration: line-through;
+    }
+
+    &_delete {
+      opacity: 0.2;
+    }
+
+    &_edit {
+      background-color: #f1f1f1;
     }
   }
 
@@ -185,9 +153,6 @@
     top: -2px;
     background-color: #ffffff;
 
-    border-top: 1px solid $todayColor;
-    border-bottom: 1px solid $todayColor;
-
     transition: width 100ms;
 
     &_title {
@@ -195,35 +160,14 @@
       margin-bottom: 60px;
     }
 
+    &_hover {
+      border-top: 1px solid $todayColor;
+      border-bottom: 1px solid $todayColor;
+    }
+
     &_description {
       margin-left: 15%;
       margin-bottom: 20px;
-    }
-  }
-
-  &__submit-btn {
-    margin-left: 79%;
-
-    border: 0;
-
-    border-radius: 4px;
-    color: #ffffff;
-    background-color: $todayColor;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.25px;
-    line-height: 36px;
-    text-decoration: none;
-    text-transform: none;
-
-    text-align: center;
-
-    padding: 0 17px 0 17px;
-
-    &:hover {
-      background-color: #3e83f4;
     }
   }
 }
@@ -232,6 +176,10 @@
 .fa-align-left {
   position: absolute;
   margin-left: 25px;
+}
+
+.fa-align-left {
+  margin-top: 10px;
 }
 
 #date,

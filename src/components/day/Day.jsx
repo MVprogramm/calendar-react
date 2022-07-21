@@ -1,10 +1,12 @@
 import React from "react";
+import propTypes from "prop-types";
+
 import ClockHand from "../clockhand/ClockHand";
 import Hour from "../hour/Hour";
 
 import "./day.scss";
 
-const Day = ({ dataDay, dayEvents, slotHeight }) => {
+const Day = ({ dataDay, dayEvents, slotHeight, callModal }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
@@ -24,11 +26,19 @@ const Day = ({ dataDay, dayEvents, slotHeight }) => {
             dataHour={hour}
             hourEvents={hourEvents}
             slotHeight={slotHeight}
+            callModal={callModal}
           />
         );
       })}
     </div>
   );
+};
+
+Day.propTypes = {
+  dataDay: propTypes.instanceOf(Date).isRequired,
+  dayEvents: propTypes.array.isRequired,
+  slotHeight: propTypes.object.isRequired,
+  callModal: propTypes.func.isRequired,
 };
 
 export default Day;

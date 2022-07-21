@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import propTypes from "prop-types";
 
 import Navigation from "./../navigation/Navigation";
 import Week from "../week/Week";
 import Sidebar from "../sidebar/Sidebar";
 
 import "./calendar.scss";
-import { object } from "prop-types";
 
 const Calendar = ({ weekDates, callModal, eventsList }) => {
   const slotHeight = { height: 60 };
@@ -20,11 +20,18 @@ const Calendar = ({ weekDates, callModal, eventsList }) => {
             weekDates={weekDates}
             eventsList={eventsList}
             slotHeight={slotHeight}
+            callModal={callModal}
           />
         </div>
       </div>
     </section>
   );
+};
+
+Calendar.propTypes = {
+  weekDates: propTypes.array.isRequired,
+  callModal: propTypes.func.isRequired,
+  eventsList: propTypes.array.isRequired,
 };
 
 export default Calendar;
