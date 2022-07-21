@@ -190,8 +190,8 @@ const App = () => {
     }
 
     if (
-      event.target.className === "event__title" ||
-      event.target.className === "event__time"
+      event.target.className.includes("event__title") ||
+      event.target.className.includes("event__time")
     ) {
       getEvent(event.target.offsetParent.dataset.id)
         .then((event) => {
