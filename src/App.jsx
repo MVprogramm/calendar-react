@@ -173,7 +173,8 @@ const App = () => {
     }
 
     if (event.target.className === "create-event-btn__txt") {
-      setEventDay(new Date(new Date().getTime() + 1000 * 60 * 60));
+      console.log(new Date());
+      setEventDay(new Date());
       setModalStatus("create");
     }
 
