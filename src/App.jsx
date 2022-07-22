@@ -174,6 +174,7 @@ const App = () => {
       event.target.outerHTML.includes("create-event-btn") ||
       event.target.outerHTML.includes("svg")
     ) {
+      console.log(event.target.outerHTML);
       setEventDay(new Date());
       setEventStartTime(getFormattedHours(new Date()));
       setEventEndTime(
