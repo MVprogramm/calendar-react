@@ -111,13 +111,13 @@ const App = () => {
 
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const setEvent = (event) => {
-    setEventID(event.id);
     setEventTitle(event.title);
     setEventDay(new Date(event.dateFrom));
     setEventStartTime(getFormattedHours(new Date(event.dateFrom)));
     setEventEndTime(getFormattedHours(new Date(event.dateTo)));
     setEventDescription(event.description);
     setEventDone(event.done);
+    setEventID(event.id);
   };
 
   const prevWeek = () => {
