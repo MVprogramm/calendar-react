@@ -55,7 +55,6 @@ const App = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-
     const currentEvent = {
       id: eventID,
       title: eventTitle ? eventTitle : "(no title)",
@@ -171,7 +170,7 @@ const App = () => {
       setModalStatus("create");
     }
 
-    if (event.target.className === "create-event-btn__txt") {
+    if (typeof event.target === "object") {
       setEventDay(new Date());
       setEventStartTime(getFormattedHours(new Date()));
       setEventEndTime(
@@ -194,8 +193,8 @@ const App = () => {
     }
 
     if (
-      event.target.className.includes("event__title") ||
-      event.target.className.includes("event__time")
+      String(event.target.className).includes("event__title") ||
+      String(event.target.className).includes("event__time")
     ) {
       getEvent(event.target.offsetParent.dataset.id)
         .then((event) => {
