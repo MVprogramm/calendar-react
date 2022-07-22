@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 
-import ClockHand from "../clockHand/ClockHand";
+import ClockHand from "../clockhand/ClockHand";
 import Hour from "../hour/Hour";
 
 import "./day.scss";
