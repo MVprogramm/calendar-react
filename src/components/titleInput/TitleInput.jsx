@@ -1,14 +1,12 @@
 import React from "react";
 import propTypes from "prop-types";
 import classNames from "classnames";
-
 import "./titleInput.scss";
 
 const TitleInput = ({ isModal, eventTitle, setEventTitle, eventDone }) => {
   const handleTitleInput = (event) => {
     setEventTitle(event.target.value);
   };
-
   return (
     <>
       <input

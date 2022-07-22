@@ -1,12 +1,10 @@
 import React from "react";
 import propTypes from "prop-types";
-
 import TitleInput from "../titleInput/TitleInput";
 import DateInput from "../dateInput/DateInput";
 import TimeInput from "../timeInput/TimeInput";
 import DescriptionInput from "../descriptionInput/DescriptionInput";
 import Submit from "../submit/Submit";
-
 import "./form.scss";
 
 const Form = ({

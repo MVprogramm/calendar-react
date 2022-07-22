@@ -166,6 +166,7 @@ const App = () => {
           )
         )
       );
+      setEventDone(false);
 
       setModalStatus("create");
     }
@@ -176,6 +177,7 @@ const App = () => {
       setEventEndTime(
         getFormattedHours(new Date(new Date().getTime() + 1000 * 60 * 60))
       );
+      setEventDone(false);
       setModalStatus("create");
     }
 

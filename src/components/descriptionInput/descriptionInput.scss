@@ -1,45 +1,29 @@
 @import "../../components/../utils/variables.scss";
 
 .event-form {
-  // &__field {
-  //   &_description {
-  //     width: 80%;
-  //     height: 50px;
-  //     font-size: 16px;
-  //     resize: none;
-  //     margin-left: 15%;
-  //     margin-bottom: 20px;
+  &__field {
+    &_description {
+      border: none;
+      width: 80%;
+      font-size: 14px;
+      resize: none;
+      padding: 10px;
+      border-radius: 5%;
+      margin-left: 15%;
+      margin-bottom: -4px;
 
-  //     &:hover + div,
-  //     &:focus + div {
-  //       width: 80%;
-  //       transition: width 100ms;
-  //     }
-  //   }
-  // }
+      &:hover + div,
+      &:focus + div {
+        width: 80%;
+        transition: width 100ms;
+      }
+    }
+  }
 
-  // &__shield {
-  //   width: 0;
-  //   height: 0;
-  //   position: relative;
-  //   top: -2px;
-  //   background-color: #ffffff;
-
-  //   &_description {
-  //     margin-left: 15%;
-  //     margin-bottom: 20px;
-  //   }
-
-  //   &_hover {
-  //     border-bottom-width: 0;
-  //     border-bottom-style: solid;
-  //     border-bottom-color: $todayColor;
-  //     transition: border-bottom-width 100ms;
-
-  //     &:hover {
-  //       border-bottom-width: 2px;
-  //       transition: border-bottom-width 100ms;
-  //     }
-  //   }
-  // }
+  &__shield {
+    &_description {
+      margin-left: 15%;
+      margin-bottom: 20px;
+    }
+  }
 }

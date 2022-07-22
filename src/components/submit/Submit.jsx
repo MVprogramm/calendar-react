@@ -1,6 +1,5 @@
 import React from "react";
 import propTypes from "prop-types";
-
 import "./submit.scss";
 
 const Submit = ({ isModal, eventDone }) => {

@@ -1,13 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
-import classNames from "classnames";
-
 import Menu from "../menu/Menu";
 import Form from "../form/Form";
-import Submit from "../submit/Submit";
-
-import { getFormattedDate, setTimeFormat } from "../../utils/dateUtils.js";
-
 import "./modal.scss";
 
 const Modal = ({

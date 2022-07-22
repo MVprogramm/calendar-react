@@ -1,6 +1,5 @@
 import React from "react";
 import propTypes from "prop-types";
-
 import "./sidebar.scss";
 
 const Sidebar = ({ slotHeight }) => {

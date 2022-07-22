@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import propTypes from "prop-types";
-
 import Navigation from "./../navigation/Navigation";
 import Week from "../week/Week";
 import Sidebar from "../sidebar/Sidebar";
-
 import "./calendar.scss";
 
 const Calendar = ({ weekDates, callModal, eventsList }) => {
   const slotHeight = { height: 60 };
-
   return (
     <section className="calendar">
       <Navigation weekDates={weekDates} />

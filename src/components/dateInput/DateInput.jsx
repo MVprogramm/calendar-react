@@ -1,9 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import classNames from "classnames";
-
 import { getFormattedDate } from "../../utils/dateUtils.js";
-
 import "./dateInput.scss";
 
 const DateInput = ({ isModal, eventDay, setEventDay, eventDone }) => {

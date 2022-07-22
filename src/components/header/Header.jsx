@@ -1,9 +1,8 @@
 import React from "react";
 import propTypes from "prop-types";
-
+import IconButton from "../iconButton/IconButton.jsx";
 import { getDisplayedMonth } from "../../utils/dateUtils.js";
 import "./header.scss";
-import IconButton from "../iconButton/IconButton.jsx";
 
 const Header = ({
   prevWeek,

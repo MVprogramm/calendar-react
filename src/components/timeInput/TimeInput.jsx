@@ -1,9 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import classNames from "classnames";
-
 import { setTimeFormat } from "../../utils/dateUtils.js";
-
 import "./timeInput.scss";
 
 const TimeInput = ({
@@ -47,6 +45,7 @@ const TimeInput = ({
           {setTimeFormat([eventStartTime, eventEndTime])[0]}
         </span>
       </label>
+
       <span className="event-form__field_interval">-</span>
 
       <label

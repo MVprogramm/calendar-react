@@ -17,30 +17,11 @@
 
   &__circle {
     position: absolute;
-
     height: 32px;
     width: 32px;
-
     background-color: #f1f3f4;
-
     border-radius: 50%;
-
     opacity: 0;
     z-index: 0;
   }
 }
-
-// .btn {
-//   display: flex;
-//   justify-content: flex-end;
-//   align-items: center;
-
-//   height: 36px;
-
-//   border: none;
-//   background-color: transparent;
-
-//   &__img {
-//     cursor: pointer;
-//   }
-// }

@@ -1,8 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
-
-import "./menu.scss";
 import IconButton from "../iconButton/IconButton";
+import "./menu.scss";
 
 const Menu = ({ closeModal, isModal, setModalStatus }) => {
   const handleClickEdit = () => {

@@ -17,7 +17,6 @@ index(
                     )
                 )
             )
-            ClockHand()
         )
         Modal(
             Menu(
@@ -140,9 +139,9 @@ index(
         12.5. set the current time into "ClockHand" state
         12.6. run "ClockHand" rendering every minute with "useEffect()" hook
         12.7. run "ClockHand" rendering if "dataDay" is the current day
-        12.8. add styles to clockhand.scss
+        12.8. add styles to clockHand.scss
         12.9. class "clock" in it has "positions:absolute" property relative to "calendar__day" from calendar.scss
-        12.10. set time as "Clockhand" position with "top" property
+        12.10. set time as "ClockHand" position with "top" property
         12.11. "top" is calculated from the current time and hour cell height
     13. add a modal window to create an event
         13.1. add to "App" component state "isModal" variable: true/false - show/hide modal window
@@ -150,7 +149,7 @@ index(
         13.3. give "callModal()" function as prop to "Header" and "Calendar" to open modal window
         13.4. add "callModal()" function to "Create" button attribute in Header.jsx
         13.5. add "callModal()" function to ".calendar__week-container" attribute in Calendar.jsx
-        13.6. give "closeModal()" function as prop to "Clockhand" to close modal window
+        13.6. give "closeModal()" function as prop to "ClockHand" to close modal window
         13.7. add "closeModal()" function to "Create" button attribute in Modal.jsx
         13.8. add "closeModal()" function to ".create-event__close-btn" button attribute in Modal.jsx
         13.1. change the layout and css to make the modal window look like in task design

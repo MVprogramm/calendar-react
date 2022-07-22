@@ -1,7 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
 import classNames from "classnames";
-
 import { days } from "../../utils/dateUtils.js";
 
 const Navigation = ({ weekDates }) => {

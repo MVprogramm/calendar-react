@@ -1,6 +1,5 @@
 import React from "react";
 import propTypes from "prop-types";
-
 import Event from "../event/Event";
 import { formatMins } from "../../../src/utils/dateUtils.js";
 
@@ -11,7 +10,6 @@ const Hour = ({ dataHour, hourEvents, slotHeight, callModal }) => {
       style={slotHeight}
       data-time={dataHour + 1}
     >
-      {/* if no events in the current hour nothing will render here */}
       {hourEvents.map(({ id, dateFrom, dateTo, title, done }) => {
         const from = new Date(dateFrom);
         const to = new Date(dateTo);
@@ -26,7 +24,6 @@ const Hour = ({ dataHour, hourEvents, slotHeight, callModal }) => {
         return (
           <Event
             key={id}
-            //calculating event height = duration of event in minutes
             height={height}
             marginTop={from.getMinutes()}
             flexDirection={flexDirection}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import propTypes from "prop-types";
 
-import "./clockhand.scss";
+import "./clockHand.scss";
 
 const ClockHand = ({ dataDay, slotHeight }) => {
   const [currentTime, setCurrentTime] = useState(new Date().getTime());
