@@ -170,7 +170,10 @@ const App = () => {
       setModalStatus("create");
     }
 
-    if (typeof event.target === "object") {
+    if (
+      event.target.outerHTML.includes("create-event-btn") ||
+      event.target.outerHTML.includes("svg")
+    ) {
       setEventDay(new Date());
       setEventStartTime(getFormattedHours(new Date()));
       setEventEndTime(
