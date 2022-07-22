@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 
-import ClockHand from "../clockHand/ClockHand";
+import ClockHand from "../clockhand/ClockHand";
 import Hour from "../hour/Hour";
 
 import "./day.scss";
@@ -15,7 +15,6 @@ const Day = ({ dataDay, dayEvents, slotHeight, callModal }) => {
     <div className="calendar__day" data-day={thisDay}>
       <ClockHand dataDay={dataDay} slotHeight={slotHeight} />
       {hours.map((hour) => {
-        //getting all events from the day we will render
         const hourEvents = dayEvents.filter(
           (event) => new Date(event.dateFrom).getHours() === hour
         );
