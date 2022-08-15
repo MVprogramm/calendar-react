@@ -7,59 +7,34 @@ import DescriptionInput from "../descriptionInput/DescriptionInput";
 import Submit from "../submit/Submit";
 import "./form.scss";
 
-const Form = ({
-  isModal,
-  onSubmit,
-  eventTitle,
-  setEventTitle,
-  eventDay,
-  setEventDay,
-  eventStartTime,
-  setEventStartTime,
-  eventEndTime,
-  setEventEndTime,
-  eventDescription,
-  setEventDescription,
-  eventDone,
-  setEventDone,
-}) => {
+const Form = ({ isModal, onSubmit, eventData, setEventData }) => {
   return (
     <form className="event-form" onSubmit={onSubmit}>
       <TitleInput
         isModal={isModal}
-        eventTitle={eventTitle}
-        setEventTitle={setEventTitle}
-        eventDone={eventDone}
+        eventData={eventData}
+        setEventData={setEventData}
       />
       <div className="event-form__time">
         <i className="far fa-clock"></i>
         <DateInput
           isModal={isModal}
-          eventDay={eventDay}
-          setEventDay={setEventDay}
-          eventDone={eventDone}
+          eventData={eventData}
+          setEventData={setEventData}
         />
         <TimeInput
           isModal={isModal}
-          eventStartTime={eventStartTime}
-          setEventStartTime={setEventStartTime}
-          eventEndTime={eventEndTime}
-          setEventEndTime={setEventEndTime}
-          eventDone={eventDone}
+          eventData={eventData}
+          setEventData={setEventData}
         />
       </div>
       <i className="fas fa-align-left"></i>
       <DescriptionInput
         isModal={isModal}
-        eventDescription={eventDescription}
-        setEventDescription={setEventDescription}
-        eventDone={eventDone}
+        eventData={eventData}
+        setEventData={setEventData}
       />
-      <Submit
-        isModal={isModal}
-        eventDone={eventDone}
-        setEventDone={setEventDone}
-      />
+      <Submit isModal={isModal} eventData={eventData} />
     </form>
   );
 };
@@ -68,18 +43,8 @@ Form.propTypes = {
   isModal: propTypes.oneOf(["", "create", "control", "delete", "edit"])
     .isRequired,
   onSubmit: propTypes.func.isRequired,
-  eventTitle: propTypes.string.isRequired,
-  setEventTitle: propTypes.func.isRequired,
-  eventDay: propTypes.instanceOf(Date).isRequired,
-  setEventDay: propTypes.func.isRequired,
-  eventStartTime: propTypes.string.isRequired,
-  setEventStartTime: propTypes.func.isRequired,
-  eventEndTime: propTypes.string.isRequired,
-  setEventEndTime: propTypes.func.isRequired,
-  eventDescription: propTypes.string.isRequired,
-  setEventDescription: propTypes.func.isRequired,
-  eventDone: propTypes.bool.isRequired,
-  setEventDone: propTypes.func.isRequired,
+  eventData: propTypes.object.isRequired,
+  setEventData: propTypes.func.isRequired,
 };
 
 export default Form;

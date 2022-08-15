@@ -2,6 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import classNames from "classnames";
 import { days } from "../../utils/dateUtils.js";
+import "./navigation.scss";
 
 const Navigation = ({ weekDates }) => {
   let isToday = false;

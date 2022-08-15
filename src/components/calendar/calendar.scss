@@ -1,25 +1,7 @@
-@import "../../components/../utils/variables.scss";
-
 .calendar {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 60px);
-
-  &__header {
-    display: flex;
-    height: 100px;
-    padding-left: 0;
-  }
-
-  &__gmt {
-    height: 100px;
-    width: 48px;
-    font-size: 10px;
-    text-align: center;
-    border-bottom: 1px solid #dadce0;
-    opacity: 0.7;
-    padding-top: 80px;
-  }
 
   &__body {
     display: flex;
@@ -36,84 +18,4 @@
     width: 100%;
     height: fit-content;
   }
-
-  &__time-scale {
-    height: 100%;
-    width: 48px;
-  }
-
-  &__scale {
-    width: 13px;
-    border-bottom: 1px solid #dadce0;
-  }
-
-  &__week {
-    display: flex;
-    flex: 1;
-  }
-
-  &__time-slot {
-    position: relative;
-    border-bottom: 1px solid #eee;
-  }
-
-  &__day-label {
-    flex: 1;
-  }
-}
-
-.day-label {
-  position: relative;
-  height: 108px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-
-  &__day-name {
-    font-size: 14px;
-    text-transform: uppercase;
-
-    &_today {
-      color: $todayColor;
-    }
-  }
-
-  &__day-number {
-    font-size: 22px;
-
-    &_today {
-      color: #ffffff;
-    }
-  }
-
-  &__day-circle {
-    position: absolute;
-    top: 28px;
-    height: 45px;
-    width: 45px;
-    background-color: $todayColor;
-    border-radius: 50%;
-    opacity: 0;
-    z-index: -1;
-
-    &_today {
-      opacity: 1;
-    }
-  }
-
-  &__day-cell {
-    width: 100%;
-    height: 20px;
-    border-left: 1px solid $gridColor;
-    border-bottom: 1px solid $gridColor;
-    z-index: -1;
-  }
-}
-
-.red-line {
-  position: absolute;
-  width: 100%;
-  border-top: 2px solid red;
-  z-index: 5;
 }

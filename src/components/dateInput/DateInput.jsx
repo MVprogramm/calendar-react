@@ -4,9 +4,13 @@ import classNames from "classnames";
 import { getFormattedDate } from "../../utils/dateUtils.js";
 import "./dateInput.scss";
 
-const DateInput = ({ isModal, eventDay, setEventDay, eventDone }) => {
+const DateInput = ({ isModal, eventData, setEventData }) => {
+  const { day, done } = eventData;
   const handleDateInput = (event) => {
-    setEventDay(new Date(event.target.value));
+    setEventData({
+      ...eventData,
+      day: new Date(event.target.value),
+    });
   };
   const showDatePicker = (event) => {
     if (isModal === "create" || isModal === "edit")
@@ -17,7 +21,7 @@ const DateInput = ({ isModal, eventDay, setEventDay, eventDone }) => {
     <label
       className={classNames("event-form__field event-form__field_date", {
         "event-form__field_hover": isModal === "create" || isModal === "edit",
-        "event-form__field_done": eventDone,
+        "event-form__field_done": done,
         "event-form__field_delete": isModal === "delete",
       })}
     >
@@ -25,11 +29,11 @@ const DateInput = ({ isModal, eventDay, setEventDay, eventDone }) => {
         type="date"
         id="date"
         name="date"
-        value={eventDay}
+        value={day}
         onChange={handleDateInput}
       />
       <span id="eventDay" onClick={showDatePicker}>
-        {getFormattedDate(eventDay)}
+        {getFormattedDate(day)}
       </span>
     </label>
   );
@@ -38,9 +42,8 @@ const DateInput = ({ isModal, eventDay, setEventDay, eventDone }) => {
 DateInput.propTypes = {
   isModal: propTypes.oneOf(["", "create", "control", "delete", "edit"])
     .isRequired,
-  eventDay: propTypes.instanceOf(Date).isRequired,
-  setEventDay: propTypes.func.isRequired,
-  eventDone: propTypes.bool.isRequired,
+  eventData: propTypes.object.isRequired,
+  setEventData: propTypes.func.isRequired,
 };
 
 export default DateInput;

@@ -2,12 +2,13 @@ import React from "react";
 import propTypes from "prop-types";
 import "./submit.scss";
 
-const Submit = ({ isModal, eventDone }) => {
+const Submit = ({ isModal, eventData }) => {
+  const { done } = eventData;
   return (
     <button type="submit" className="submit-btn">
       {isModal === "create" && "Create"}
-      {isModal === "control" && eventDone && "Not done"}
-      {isModal === "control" && !eventDone && "Done"}
+      {isModal === "control" && done && "Not done"}
+      {isModal === "control" && !done && "Done"}
       {isModal === "delete" && "Delete"}
       {isModal === "edit" && "Save"}
     </button>
@@ -17,7 +18,7 @@ const Submit = ({ isModal, eventDone }) => {
 Submit.propTypes = {
   isModal: propTypes.oneOf(["", "create", "control", "delete", "edit"])
     .isRequired,
-  eventDone: propTypes.bool.isRequired,
+  eventData: propTypes.object.isRequired,
 };
 
 export default Submit;

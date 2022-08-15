@@ -1,4 +1,6 @@
 const baseURL = "https://6275fcfd15458100a6a9c207.mockapi.io/api/v1/calendar";
+export const faviconURL =
+  "https://calendar.google.com/googlecalendar/images/favicons_2020q4/calendar_";
 
 export const fetchEventsList = () => fetch(baseURL).then((res) => res.json());
 

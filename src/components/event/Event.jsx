@@ -3,16 +3,8 @@ import propTypes from "prop-types";
 import classNames from "classnames";
 import "./event.scss";
 
-const Event = ({
-  height,
-  marginTop,
-  flexDirection,
-  title,
-  time,
-  done,
-  id,
-  callModal,
-}) => {
+const Event = ({ eventData, callModal }) => {
+  const { height, marginTop, flexDirection, title, time, done, id } = eventData;
   const eventStyle = {
     height,
     marginTop,
@@ -32,13 +24,7 @@ const Event = ({
 };
 
 Event.propTypes = {
-  height: propTypes.number.isRequired,
-  marginTop: propTypes.number.isRequired,
-  flexDirection: propTypes.string.isRequired,
-  title: propTypes.string.isRequired,
-  time: propTypes.string.isRequired,
-  done: propTypes.bool.isRequired,
-  id: propTypes.string.isRequired,
+  eventData: propTypes.object.isRequired,
   callModal: propTypes.func.isRequired,
 };
 

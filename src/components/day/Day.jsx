@@ -1,9 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
-
-import ClockHand from "../clockhand/ClockHand";
+import ClockHand from "../clockHand/ClockHand";
 import Hour from "../hour/Hour";
-
 import "./day.scss";
 
 const Day = ({ dataDay, dayEvents, slotHeight, callModal }) => {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import propTypes from "prop-types";
-
 import "./clockHand.scss";
 
 const ClockHand = ({ dataDay, slotHeight }) => {

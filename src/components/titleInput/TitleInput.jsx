@@ -3,10 +3,15 @@ import propTypes from "prop-types";
 import classNames from "classnames";
 import "./titleInput.scss";
 
-const TitleInput = ({ isModal, eventTitle, setEventTitle, eventDone }) => {
+const TitleInput = ({ isModal, eventData, setEventData }) => {
+  const { title, done } = eventData;
   const handleTitleInput = (event) => {
-    setEventTitle(event.target.value);
+    setEventData({
+      ...eventData,
+      title: event.target.value,
+    });
   };
+
   return (
     <>
       <input
@@ -15,10 +20,10 @@ const TitleInput = ({ isModal, eventTitle, setEventTitle, eventDone }) => {
         placeholder="Title"
         readOnly={isModal === "control" || isModal === "delete"}
         className={classNames("event-form__field event-form__field_title", {
-          "event-form__field_done": eventDone,
+          "event-form__field_done": done,
           "event-form__field_delete": isModal === "delete",
         })}
-        value={eventTitle}
+        value={title}
         onChange={handleTitleInput}
       />
       <div
@@ -34,9 +39,8 @@ const TitleInput = ({ isModal, eventTitle, setEventTitle, eventDone }) => {
 TitleInput.propTypes = {
   isModal: propTypes.oneOf(["", "create", "control", "delete", "edit"])
     .isRequired,
-  eventTitle: propTypes.string.isRequired,
-  setEventTitle: propTypes.func.isRequired,
-  eventDone: propTypes.bool.isRequired,
+  eventData: propTypes.object.isRequired,
+  setEventData: propTypes.func.isRequired,
 };
 
 export default TitleInput;

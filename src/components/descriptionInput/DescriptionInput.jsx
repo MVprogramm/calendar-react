@@ -3,14 +3,13 @@ import propTypes from "prop-types";
 import classNames from "classnames";
 import "./descriptionInput.scss";
 
-const DescriptionInput = ({
-  isModal,
-  eventDescription,
-  setEventDescription,
-  eventDone,
-}) => {
+const DescriptionInput = ({ isModal, eventData, setEventData }) => {
+  const { description, done } = eventData;
   const handleDescriptionInput = (event) => {
-    setEventDescription(event.target.value);
+    setEventData({
+      ...eventData,
+      description: event.target.value,
+    });
   };
 
   return (
@@ -22,13 +21,13 @@ const DescriptionInput = ({
         className={classNames(
           "event-form__field event-form__field_description",
           {
-            "event-form__field_done": eventDone,
+            "event-form__field_done": done,
             "event-form__field_edit":
               isModal === "create" || isModal === "edit",
             "event-form__field_delete": isModal === "delete",
           }
         )}
-        value={eventDescription}
+        value={description}
         onChange={handleDescriptionInput}
       ></textarea>
       <div
@@ -47,9 +46,8 @@ const DescriptionInput = ({
 DescriptionInput.propTypes = {
   isModal: propTypes.oneOf(["", "create", "control", "delete", "edit"])
     .isRequired,
-  eventDescription: propTypes.string.isRequired,
-  setEventDescription: propTypes.func.isRequired,
-  eventDone: propTypes.bool.isRequired,
+  eventData: propTypes.object.isRequired,
+  setEventData: propTypes.func.isRequired,
 };
 
 export default DescriptionInput;

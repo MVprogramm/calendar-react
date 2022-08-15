@@ -3,7 +3,7 @@ const getTwoNumbersString = (num) => {
   return twoNumbersString;
 };
 
-export const getTimeInterval = (days) => 1000 * 60 * 60 * 24 * days;
+export const getDaysInterval = (days) => 1000 * 60 * 60 * 24 * days;
 
 export const getWeekStartDate = (date) => {
   const dateCopy = new Date(date);
@@ -53,7 +53,7 @@ export const months = [
 export const getDisplayedMonth = (date) => {
   const monthsNames = months.map((month) => month.slice(0, 3));
   const weekStart = getWeekStartDate(date);
-  const weekEnd = new Date(new Date(weekStart).getTime() + getTimeInterval(6));
+  const weekEnd = new Date(new Date(weekStart).getTime() + getDaysInterval(6));
   const startMonth = weekStart.getMonth();
   const startYear = weekStart.getFullYear();
   const endMonth = weekEnd.getMonth();
@@ -78,6 +78,12 @@ export const getFormattedHours = (date) => {
   return `${getTwoNumbersString(date.getHours())}:${getTwoNumbersString(
     date.getMinutes()
   )}`;
+};
+
+export const getFormattedTime = (dateStr, hoursStr) => {
+  return `${new Date(dateStr).getFullYear()}-${
+    new Date(dateStr).getMonth() + 1
+  }-${new Date(dateStr).getDate()} ${hoursStr}`;
 };
 
 export const setTimeFormat = ([startTime, endTime]) => {

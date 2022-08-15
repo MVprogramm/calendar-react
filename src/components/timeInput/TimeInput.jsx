@@ -4,25 +4,25 @@ import classNames from "classnames";
 import { setTimeFormat } from "../../utils/dateUtils.js";
 import "./timeInput.scss";
 
-const TimeInput = ({
-  isModal,
-  eventStartTime,
-  setEventStartTime,
-  eventEndTime,
-  setEventEndTime,
-  eventDone,
-}) => {
+const TimeInput = ({ isModal, eventData, setEventData }) => {
+  const { start, end, done } = eventData;
   const showTimePicker = (event) => {
     if (isModal === "create" || isModal === "edit")
       event.target.previousElementSibling.showPicker();
   };
   const handleStartTimeInput = (event) => {
-    setEventStartTime(setTimeFormat([event.target.value, eventEndTime])[0]);
-    setEventEndTime(setTimeFormat([event.target.value, eventEndTime])[1]);
+    setEventData({
+      ...eventData,
+      start: setTimeFormat([event.target.value, end])[0],
+      end: setTimeFormat([event.target.value, end])[1],
+    });
   };
   const handleEndTimeInput = (event) => {
-    setEventStartTime(setTimeFormat([eventStartTime, event.target.value])[0]);
-    setEventEndTime(setTimeFormat([eventStartTime, event.target.value])[1]);
+    setEventData({
+      ...eventData,
+      start: setTimeFormat([start, event.target.value])[0],
+      end: setTimeFormat([start, event.target.value])[1],
+    });
   };
 
   return (
@@ -30,7 +30,7 @@ const TimeInput = ({
       <label
         className={classNames("event-form__field_start-time", {
           "event-form__field_hover": isModal === "create" || isModal === "edit",
-          "event-form__field_done": eventDone,
+          "event-form__field_done": done,
           "event-form__field_delete": isModal === "delete",
         })}
       >
@@ -38,11 +38,11 @@ const TimeInput = ({
           type="time"
           id="startTime"
           name="startTime"
-          value={eventStartTime}
+          value={start}
           onChange={handleStartTimeInput}
         />
         <span id="eventStartTime" onClick={showTimePicker}>
-          {setTimeFormat([eventStartTime, eventEndTime])[0]}
+          {setTimeFormat([start, end])[0]}
         </span>
       </label>
 
@@ -51,7 +51,7 @@ const TimeInput = ({
       <label
         className={classNames("event-form__field_end-time", {
           "event-form__field_hover": isModal === "create" || isModal === "edit",
-          "event-form__field_done": eventDone,
+          "event-form__field_done": done,
           "event-form__field_delete": isModal === "delete",
         })}
       >
@@ -59,11 +59,11 @@ const TimeInput = ({
           type="time"
           id="endTime"
           name="endTime"
-          value={eventEndTime}
+          value={end}
           onChange={handleEndTimeInput}
         />
         <span id="eventEndTime" onClick={showTimePicker}>
-          {setTimeFormat([eventStartTime, eventEndTime])[1]}
+          {setTimeFormat([start, end])[1]}
         </span>
       </label>
     </>
@@ -73,11 +73,8 @@ const TimeInput = ({
 TimeInput.propTypes = {
   isModal: propTypes.oneOf(["", "create", "control", "delete", "edit"])
     .isRequired,
-  eventStartTime: propTypes.string.isRequired,
-  setEventStartTime: propTypes.func.isRequired,
-  eventEndTime: propTypes.string.isRequired,
-  setEventEndTime: propTypes.func.isRequired,
-  eventDone: propTypes.bool.isRequired,
+  eventData: propTypes.object.isRequired,
+  setEventData: propTypes.func.isRequired,
 };
 
 export default TimeInput;

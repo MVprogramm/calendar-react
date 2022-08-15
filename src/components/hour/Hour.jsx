@@ -2,6 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import Event from "../event/Event";
 import { formatMins } from "../../../src/utils/dateUtils.js";
+import "./hour.scss";
 
 const Hour = ({ dataHour, hourEvents, slotHeight, callModal }) => {
   return (
@@ -17,23 +18,19 @@ const Hour = ({ dataHour, hourEvents, slotHeight, callModal }) => {
           from.getMinutes()
         )}`;
         const eventEnd = `${to.getHours()}:${formatMins(to.getMinutes())}`;
-
         const height = (to.getTime() - from.getTime()) / (1000 * 60);
         const flexDirection = height > 30 ? "column" : "row";
+        const eventData = {
+          id,
+          title,
+          done,
+          time: `${eventStart} - ${eventEnd}`,
+          height,
+          flexDirection,
+          marginTop: from.getMinutes(),
+        };
 
-        return (
-          <Event
-            key={id}
-            height={height}
-            marginTop={from.getMinutes()}
-            flexDirection={flexDirection}
-            time={`${eventStart} - ${eventEnd}`}
-            title={title}
-            done={done}
-            id={id}
-            callModal={callModal}
-          />
-        );
+        return <Event key={id} eventData={eventData} callModal={callModal} />;
       })}
     </div>
   );
