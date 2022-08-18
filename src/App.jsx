@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Header from "./components/header/Header.jsx";
-import Calendar from "./components/calendar/Calendar.jsx";
-import Modal from "./components/modal/Modal.jsx";
+import Header from "./features/header/Header.jsx";
+import Calendar from "./features/calendar/Calendar.jsx";
+import Modal from "./features/modal/Modal.jsx";
 import * as getDate from "../src/utils/dateUtils.js";
 import * as gateWay from "./gateway/gateway";
 import * as getEvent from "../src/utils/eventUtils.js";
-import "./common.scss";
+import "../src/styles/common.scss";
 
 const App = () => {
   const favicon = document.querySelector("#favicon");
@@ -18,12 +18,7 @@ const App = () => {
 
   const fetchEvents = () =>
     gateWay.fetchEventsList().then((events) => setEventList(events));
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWeekStartDate(new Date());
-    }, 1000 * 60 * 60 * 24);
-    return () => clearInterval(interval);
-  }, [weekStartDate]);
+
   useEffect(() => {
     fetchEvents();
   }, []);
